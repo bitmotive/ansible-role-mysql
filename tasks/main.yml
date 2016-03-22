@@ -1,0 +1,16 @@
+---
+# Install and Configure MySQL
+
+- name: Install MySQL
+  yum: name=mysql-server state=latest
+  tags: mysql-install
+
+- name: Set MySQL to run on boot
+  command: /sbin/chkconfig --levels 235 mysqld on
+  tags: mysql-chkconfig
+
+- name: Start MySQL
+  command: /sbin/service mysqld restart
+  tags: mysql-restart
+
+# TODO: Add automation for mysql_secure_installation. Until then, run by hand.
